@@ -1,0 +1,11 @@
+{% if items %}
+  <ul>
+    {% for item in items %}
+    <li>
+      <a href="{{item.url}}">{{ item.name }}</a> <button>Hey!</button>
+    </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No items available.</p>
+{% endif %}

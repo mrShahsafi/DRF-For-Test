@@ -1,0 +1,30 @@
+{% extends "main.html" %}
+
+  {% block content %}
+
+    <div class="anghezii">
+      {% if all_heroes %}
+          {% for hero in all_heroes  %}
+          <li>
+              <ul>
+                <h4>Hero's name:</h4>
+                  <br>
+                <h4> - {{ hero.name }}</h4>
+                  <br>
+                <h4>Hero's alias:</h4>
+                  <br>
+                <h4> - {{ hero.alias }}</h4>
+                 <br>
+                <h4>Hero's world:</h4>
+                  <br>
+                <h4> - {{ hero.world.world_name }}</h4>
+                  <br>
+              </ul>
+              </li>
+              <hr>
+          {% endfor %}
+
+      {% endif %}
+    </div>
+
+  {% endblock %}
