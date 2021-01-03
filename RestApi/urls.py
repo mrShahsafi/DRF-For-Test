@@ -1,5 +1,6 @@
 from django.urls import include, path
 from . import views
+from django.contrib.auth.decorators import login_required
 app_name = 'RestApi'
 
 urlpatterns = [
