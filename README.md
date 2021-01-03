@@ -5,6 +5,9 @@ a very simple API for Insert, Delete and Select in SQLs dataBases
 /RestApi/hero/?name=''
 #returns a hero by its name or alias
 
+/RestApi/hero/<primary_key>
+#returns a hero by its pk
+
 /RestApi/hero/all
 #returns all heroes
 
