@@ -7,7 +7,14 @@ urlpatterns = [
         #find special Hero by its name or alias /?name
         path(
             'hero/',
-            views.SingleHeroApi.as_view(),
+            views.SingleHeroByNameApi.as_view(),
+            name='hero'
+           )
+           ,
+         #find special Hero by its pk
+        path(
+            'hero/<int:id>',
+            views.SingleHeroByPkApi.as_view(),
             name='hero'
            )
            ,

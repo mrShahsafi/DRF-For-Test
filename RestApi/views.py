@@ -10,7 +10,7 @@ from .serializers import (
                             )
 from django.views import View
 from django.contrib.auth.decorators import permission_required,login_required
-class SingleHeroApi(APIView):
+class SingleHeroByNameApi(APIView):
     def get(self,request,format=None):
         from django.db.models import Q
         try:
@@ -49,6 +49,40 @@ class SingleHeroApi(APIView):
                 'message':"Wrong request,please insert name /api/hero/?name=''"
                 }
                 ,status=status.HTTP_400_BAD_REQUEST)
+
+class SingleHeroByPkApi(APIView):
+    def get(self, request, id):
+        my_hero = Hero.objects.filter(pk=id)
+        if my_hero:
+            serialized_data = SingleHeroSerializer(
+                                            my_hero,
+                                            many=True
+                                                    )
+            data =  serialized_data.data
+
+            return Response(
+                        {
+                        'data':data
+                        }
+                        ,
+                        status=status.HTTP_200_OK
+                    )
+        else:
+            return Response(
+                        {
+                            'status':"File your looking for not found"
+                            }
+                            ,
+                             status=status.HTTP_404_NOT_FOUND
+                             )
+
+    def post(self,request,id):
+        return Response(
+            {'status':'GET only accepted, passed id='+str(id)+'.'}
+            ,
+            status=status.HTTP_405_METHOD_NOT_ALLOWED
+            )
+
 
 class AllHeroesApi(APIView):
     def get(self,request,format=None):
