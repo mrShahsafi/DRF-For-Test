@@ -10,6 +10,25 @@ from .serializers import (
                             )
 from django.views import View
 from django.contrib.auth.decorators import permission_required,login_required
+
+class CheckSystemStatus(APIView):
+    def get(self, request,format=None):
+        return Response(
+                    {
+                    'status':'GET method works'
+                    }
+                    ,
+                    status=status.HTTP_200_OK
+                )
+    def post(self, request,format=None):
+        return Response(
+                    {
+                    'status':'POST method works'
+                    }
+                    ,
+                    status=status.HTTP_200_OK
+                )
+
 class SingleHeroByNameApi(APIView):
     def get(self,request,format=None):
         from django.db.models import Q

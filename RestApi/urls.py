@@ -4,6 +4,13 @@ from django.contrib.auth.decorators import login_required
 app_name = 'RestApi'
 
 urlpatterns = [
+        #chek system avaiabality Under GET and POST requests
+        path(
+            'status',
+            views.CheckSystemStatus.as_view(),
+            name='status'
+           )
+           ,
         #find special Hero by its name or alias /?name
         path(
             'hero/',
