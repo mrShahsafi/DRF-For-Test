@@ -1,9 +1,10 @@
 # DRF-For-Test
 a very simple API for Insert, Delete and Select in SQLs dataBases
 ---
-firs of all install requirements:
+#firs of all install requirements:
 
 >pip install -r requirements.txt
+
 #Attention: by default, swagger uses staticfiles for directions of static.Go to site packages and replaces {%staticfiles%} by {%static%} in the templates directory;index.html.
 
 ***API Usage:***
