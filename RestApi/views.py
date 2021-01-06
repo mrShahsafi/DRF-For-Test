@@ -318,7 +318,6 @@ class SingleWorldApi(APIView):
                      status=status.HTTP_403_FORBIDDEN
                      )
 
-
 class AllWorldsApi(APIView):
     def get(self, request,format=None):
         all_worlds = World.objects.all().order_by('world_name')

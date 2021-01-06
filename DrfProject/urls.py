@@ -16,6 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
+from rest_framework_swagger.views import get_swagger_view
+
+schema_view = get_swagger_view(title='Heroes API')
 
 urlpatterns = [
     path(
@@ -39,12 +42,17 @@ urlpatterns = [
          include('VueApp.urls')
          )
          ,
-         path(
-        'api-auth/',
-         include(
-         'rest_framework.urls',
-         namespace='rest_framework'
-                     )
+     path(
+    'api-auth/',
+     include(
+     'rest_framework.urls',
+     namespace='rest_framework'
+                 )
+     )
+         ,
+    path(
+        'schema/',
+         schema_view
          )
          ,
 ]
