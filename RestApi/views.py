@@ -1,18 +1,20 @@
 from django.shortcuts import render
-from .models import Hero, World
+from django.views import View
 from rest_framework.views import APIView
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import (
                             SingleHeroSerializer,
-                            SubmitHeroSerializer
                             )
-from django.views import View
-from django.contrib.auth.decorators import permission_required,login_required
-
+from django.contrib.auth.decorators import (
+                                                login_required
+                                                )
+from .models import (Hero,
+                        World
+                        )
 class CheckSystemStatus(APIView):
-    def get(self, request,format=None):
+    def get(self,format=None):
         return Response(
                     {
                     'status':'GET method works'
@@ -281,7 +283,11 @@ class SingleWorldApi(APIView):
         from django.db.models import Q
 
         get_world_name = request.GET['world_name']
-        query = World.objects.filter(Q(world_name__iexact=get_world_name)|Q(about__iexact=get_world_name))
+        query = World.objects.filter(
+                Q(world_name__iexact=get_world_name
+                    )
+                    |Q(about__iexact=get_world_name)
+                )
         if query:
             data  = []
             for world in query:
@@ -329,12 +335,11 @@ class AllWorldsApi(APIView):
             ,
             status=status.HTTP_200_OK
             )
-        else:
-            return Response(
-            {'message':'Sorry,there is no worlds available yet.please cone back later.'}
-            ,
-            status=status.HTTP_404_NOT_FOUND
-            )
+        return Response(
+        {'message':'Sorry,there is no worlds available yet.please cone back later.'}
+        ,
+        status=status.HTTP_404_NOT_FOUND
+        )
     def post(self, request,format=None):
         pass
 
