@@ -4,20 +4,22 @@ a very simple API for Insert, Delete and Select in SQLs dataBases
 firs of all install requirements:
 
 >pip install -r requirements.txt
+#Attention: by default, swagger uses staticfiles for directions of static.Go to site packages and replaces {%staticfiles%} by {%static%} in the templates directory;index.html.
+
 ***API Usage:***
 
-api/status
+> /schema
+#returns api documentation by swagger interface.
+
+
+> api/status
 #returns api availability under get and post requests
 
-/api/hero/<primary_key>
+> /api/hero/<primary_key>
 #returns a hero by its pk
 
-/RestApi/hero/all
-
-
-
 > /api/hero/?name=''
- #returns a hero by its name or alias
+#returns a hero by its name or alias
 
 > /api/hero/all
 #returns all heroes
