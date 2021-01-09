@@ -104,6 +104,21 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+CACHES = {
+#Local-memory caching
+#https://docs.djangoproject.com/en/dev/topics/cache/#local-memory-caching
+#    'default': {
+#        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+#        'LOCATION': '/var/tmp/django_cache',
+#    }
+
+#Dummy caching (for development)
+#https://docs.djangoproject.com/en/dev/topics/cache/#dummy-caching-for-development
+    'default': {
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+    }
+}
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
