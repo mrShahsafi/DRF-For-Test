@@ -26,6 +26,11 @@ urlpatterns = [
         admin.site.urls
         )
         ,
+    path(
+	'grappelli/',
+	 include('grappelli.urls')
+	)
+	, # grappelli URLS
     path('',
         TemplateView.as_view(
         template_name='main.html'
