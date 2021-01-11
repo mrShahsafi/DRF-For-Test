@@ -24,8 +24,8 @@ SECRET_KEY = ')d0c1w(bc3s2-#!6rm1^t^6ob0#5@27zli8)()5xa(oh%i=&x8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = []
+#from keys import HOST
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'VueApp',
     'rest_framework',
     'rest_framework_swagger',
+    'u'
     ]
 
 MIDDLEWARE = [
@@ -145,8 +146,31 @@ STATICFILES_DIRS = [
 #STATIC_ROOT = "/var/www/django/"
 STATIC_URL = '/static/'
 
+#user management
+
+AUTH_USER_MODEL = 'u.User'
+AUTHENTICATION_BACKENDS = ['account.Backend.EmailBackend']
 
 #DRF configuration
 REST_FRAMEWORK = {
-            'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
+            'DEFAULT_SCHEMA_CLASS': [
+             'rest_framework.schemas.coreapi.AutoSchema'
+             ]
+             ,
+            'DEFAULT_PERMISSION_CLASSES': [
+            'rest_framework.permissions.IsAuthenticated',
+            # 'rest_framework.permissions.AllowAny',
+            # 'rest_framework.permissions.IsAdminUser',
+            # 'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+            # 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+            ]
+            ,
+            'DEFAULT_AUTHENTICATION_CLASSES': [
+                #'rest_framework.authentication.BasicAuthentication',
+                #'rest_framework.authentication.SessionAuthentication',    # Ajax
+                'rest_framework.authentication.TokenAuthentication',
+                # OAuth
+                # JWT
+                # ...
+            ]
             }
