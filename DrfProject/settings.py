@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'RestApi',
     'VueApp',
     'rest_framework',
+    'rest_framework.authtoken',
     'rest_framework_swagger',
     'u'
     ]
@@ -149,7 +150,7 @@ STATIC_URL = '/static/'
 #user management
 
 AUTH_USER_MODEL = 'u.User'
-AUTHENTICATION_BACKENDS = ['account.Backend.EmailBackend']
+AUTHENTICATION_BACKENDS = ['u.Backend.EmailBackend']
 
 #DRF configuration
 REST_FRAMEWORK = {

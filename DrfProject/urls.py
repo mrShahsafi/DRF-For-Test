@@ -47,6 +47,7 @@ urlpatterns = [
          include('VueApp.urls')
          )
          ,
+#    path(        'api/accounts/',include('u.urls')),
      path(
     'api-auth/',
      include(
