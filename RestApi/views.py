@@ -114,7 +114,6 @@ class SingleHeroByPkApi(APIView):
 
 
 class AllHeroesApi(APIView):
-    permission_classes = [IsAuthenticated]
     def get(self,request,format=None):
         try:
             all_heroes = Hero.objects.filter(is_deleted=False)
@@ -197,6 +196,8 @@ class SearchHeroApi(APIView):
                              status=status.HTTP_404_NOT_FOUND
                              )
 class SubmitHeroApi(APIView):
+#    permission_classes = [IsAuthenticated]
+
     def get(self,request,format=None):
         return Response(
         {'status':'POST only accepted'},
@@ -249,6 +250,8 @@ class SubmitHeroApi(APIView):
 '''
 
 class DeleteHeroApi(APIView):
+#    permission_classes = [IsAuthenticated]
+
     def get(self,request,format=None):
         return Response(status=status.HTTP_403_FORBIDDEN)
 
@@ -262,29 +265,30 @@ class DeleteHeroApi(APIView):
             try:
                 target_hero = Hero.objects.get(name=HeroName)
                 if target_hero:
-                    target_hero.is_deleted == True
+                    target_hero.is_deleted = 1
                     target_hero.save()
                     return Response(
-                    {'status':' The hero '+HeroName+' has been deleted :('}
-                    ,
-                    status=status.HTTP_200_OK
-                    )
+                        {'status':' The hero '+HeroName+' has been deleted :('}
+                        ,
+                        status=status.HTTP_200_OK
+                        )
                 else:
                     return Response(
-                    {'message':'You are trying delete nonexistent hero.'}
-                    ,
-                    status=status.HTTP_404_NOT_FOUND)
+                        {'message':'You are trying delete nonexistent hero.'}
+                        ,
+                        status=status.HTTP_404_NOT_FOUND)
             except:
                 return Response(
-                {'message':'You are trying delete nonexistent hero.'}
-                ,
-                status=status.HTTP_404_NOT_FOUND)
+                    {'message':'You are trying delete nonexistent hero.'}
+                    ,
+                    status=status.HTTP_404_NOT_FOUND
+                    )
 
         else:
             return Response(
-            {'fatal':'Wrong falg'}
-            ,
-            status=status.HTTP_400_BAD_REQUEST)
+                {'fatal':'Wrong falg'}
+                ,
+                status=status.HTTP_400_BAD_REQUEST)
 
 
 class SingleWorldApi(APIView):
@@ -339,15 +343,15 @@ class AllWorldsApi(APIView):
                     "world's number":world.pk
                 })
             return Response(
-            {'data':data}
-            ,
-            status=status.HTTP_200_OK
-            )
+                {'data':data}
+                ,
+                status=status.HTTP_200_OK
+                )
         return Response(
-        {'message':'Sorry,there is no worlds available yet.please cone back later.'}
-        ,
-        status=status.HTTP_404_NOT_FOUND
-        )
+            {'message':'Sorry,there is no worlds available yet.please cone back later.'}
+            ,
+            status=status.HTTP_404_NOT_FOUND
+            )
     def post(self, request,format=None):
         pass
 
