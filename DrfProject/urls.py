@@ -49,7 +49,7 @@ urlpatterns = [
          ,
 #    path(        'api/accounts/',include('u.urls')),
      path(
-    'api-auth/',
+    'api/auth/',
      include(
      'rest_framework.urls',
      namespace='rest_framework'
