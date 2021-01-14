@@ -1,6 +1,7 @@
 from django.urls import include, path
 from . import views
 from django.contrib.auth.decorators import login_required
+from django.views.generic import RedirectView
 #from django.shortcuts import redirect
 #from django.views.generic.base import RedirectView
 
@@ -8,6 +9,11 @@ app_name = 'RestApi'
 #TODO: implement redire for root path of api
 
 urlpatterns = [
+        path(
+            '',
+            RedirectView.as_view(pattern_name='RestApi:all-heroes')
+           )
+           ,
         #chek system avaiabality Under GET and POST requests
         path(
             'status/',

@@ -81,6 +81,8 @@ class SingleHeroByNameApi(APIView):
 
 class SingleHeroByPkApi(APIView):
     def get(self, request, id):
+        from django.contrib.sites.shortcuts import get_current_site
+        domain = get_current_site(request).domain
         my_hero = Hero.objects.filter(pk=id)
         if my_hero:
             serialized_data = SingleHeroSerializer(
@@ -115,6 +117,8 @@ class SingleHeroByPkApi(APIView):
 
 class AllHeroesApi(APIView):
     def get(self,request,format=None):
+        from django.contrib.sites.shortcuts import get_current_site
+        domain = get_current_site(request).domain
         try:
             all_heroes = Hero.objects.filter(is_deleted=False)
             data  = []
@@ -126,6 +130,8 @@ class AllHeroesApi(APIView):
                     'alias is':hero.alias
                     ,
                     'world is':hero.world.world_name
+                    ,
+                    'picture is':str(domain) + hero.image.source.url
                     ,
                 })
 

@@ -11,7 +11,10 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 from pathlib import Path
-
+from .keys import (
+                    HOST,
+                    DJANGO_SECRET_KEY,
+                    )
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,12 +23,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ')d0c1w(bc3s2-#!6rm1^t^6ob0#5@27zli8)()5xa(oh%i=&x8'
+SECRET_KEY = DJANGO_SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 #from keys import HOST
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = HOST
 
 
 # Application definition
@@ -147,6 +150,11 @@ STATICFILES_DIRS = [
 #STATIC_ROOT = "/var/www/django/"
 STATIC_URL = '/static/'
 
+
+#Media Files
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 #user management
 
 AUTH_USER_MODEL = 'u.User'
@@ -159,7 +167,7 @@ REST_FRAMEWORK = {
              ]
              ,
             'DEFAULT_PERMISSION_CLASSES': [
-            'rest_framework.permissions.IsAuthenticated',
+            #'rest_framework.permissions.IsAuthenticated',
             # 'rest_framework.permissions.AllowAny',
             # 'rest_framework.permissions.IsAdminUser',
             # 'rest_framework.permissions.IsAuthenticatedOrReadOnly',
@@ -169,7 +177,7 @@ REST_FRAMEWORK = {
             'DEFAULT_AUTHENTICATION_CLASSES': [
                 #'rest_framework.authentication.BasicAuthentication',
                 #'rest_framework.authentication.SessionAuthentication',    # Ajax
-                'rest_framework.authentication.TokenAuthentication',
+                #'rest_framework.authentication.TokenAuthentication',
                 # OAuth
                 # JWT
                 # ...
