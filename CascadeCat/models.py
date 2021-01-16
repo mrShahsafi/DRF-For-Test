@@ -9,7 +9,7 @@ class SubCategory(models.Model):
 
     def __str__(self):
         return self.name
-        
+
 class Category(models.Model):
     name = models.CharField(
                 'category name',
@@ -50,7 +50,7 @@ class Product(models.Model):
                     editable=False,
                     max_length=255,
                     default=None,
-                    )
+                    )#-batmans-cape123456789
 
     def get_absolute_url(self):
         return reverse('CascadeCat:product',

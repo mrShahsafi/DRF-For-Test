@@ -1,14 +1,14 @@
 from django.urls import path
-from .views import Product
+from .views import SingleProductApi
 
 app_name = 'CascadeCat'
 
 urlpatterns = [
 
     path(
-        'product/<slug>',
-         Product.as_view(),
-         name='home'
+        'product/<id>',
+         SingleProductApi.as_view(),
+         name='porduct'
           )
           ,
 
