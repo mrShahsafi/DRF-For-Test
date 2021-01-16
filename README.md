@@ -49,3 +49,16 @@ a very simple API for Insert, Delete and Select in SQLs dataBases
 > /api/world/all
 
 #returns all worlds
+
+
+> /api/auth/login
+
+#returns sign in authentication
+
+> /api/auth/logout
+
+#returns log out function
+
+> /api/product/<id>
+
+#returns product details by its ID
