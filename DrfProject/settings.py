@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'rest_framework_swagger',
-    'u'
+    'u',
+#    'rest_auth',
     ]
 
 MIDDLEWARE = [
@@ -177,7 +178,7 @@ REST_FRAMEWORK = {
             'DEFAULT_AUTHENTICATION_CLASSES': [
                 #'rest_framework.authentication.BasicAuthentication',
                 #'rest_framework.authentication.SessionAuthentication',    # Ajax
-                #'rest_framework.authentication.TokenAuthentication',
+                'rest_framework.authentication.TokenAuthentication',
                 # OAuth
                 # JWT
                 # ...

@@ -21,6 +21,7 @@ from django.views.generic import (
                                     )
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.decorators.csrf import csrf_protect
 from rest_framework_swagger.views import get_swagger_view
 
 
@@ -38,9 +39,11 @@ urlpatterns = [
 	)
 	, # grappelli URLS
     path('',
+    csrf_protect(
         TemplateView.as_view(
         template_name='main.html'
                         )
+                )
         )
         ,
     path(
@@ -53,7 +56,7 @@ urlpatterns = [
          include('VueApp.urls')
          )
          ,
-#    path(        'api/accounts/',include('u.urls')),
+#   path(        'api/accounts/',include('u.urls')),
      path(
     'api/auth/',
      include(

@@ -3,6 +3,7 @@ from django.views import View
 from django.contrib.auth.decorators import (
                                 login_required
                                             )
+from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.cache import cache_page
 from rest_framework.views import APIView
 from rest_framework import viewsets
@@ -30,6 +31,7 @@ class CheckSystemStatus(APIView):
                     status=status.HTTP_200_OK
                 )
 #    @ratelimit(key='ip', rate='3/m')
+    @csrf_protect
     def post(self, request,format=None):
         return Response(
                     {
@@ -106,7 +108,7 @@ class SingleHeroByPkApi(APIView):
                             ,
                              status=status.HTTP_404_NOT_FOUND
                              )
-
+    @csrf_protect
     def post(self,request,id):
         return Response(
             {'status':'GET only accepted, passed id='+str(id)+'.'}
@@ -151,7 +153,7 @@ class AllHeroesApi(APIView):
                          status=status.HTTP_500_INTERNAL_SERVER_ERROR
                          )
 
-
+    @csrf_protect
     def post(self,request,format=None):
         return Response(
                     {
@@ -203,12 +205,12 @@ class SearchHeroApi(APIView):
                              )
 class SubmitHeroApi(APIView):
 #    permission_classes = [IsAuthenticated]
-
     def get(self,request,format=None):
         return Response(
         {'status':'POST only accepted'},
         status=status.HTTP_405_METHOD_NOT_ALLOWED
         )
+    @csrf_protect
     def post(self,request,format=None):
         import json
         #from rest_framework.parsers import JSONParser
@@ -257,10 +259,9 @@ class SubmitHeroApi(APIView):
 
 class DeleteHeroApi(APIView):
 #    permission_classes = [IsAuthenticated]
-
     def get(self,request,format=None):
         return Response(status=status.HTTP_403_FORBIDDEN)
-
+    @csrf_protect
     def post(self,request,format=None):
         import json
         data = json.dumps(request.data)
@@ -328,6 +329,7 @@ class SingleWorldApi(APIView):
             ,
             status=status.HTTP_404_NOT_FOUND
             )
+    @csrf_protect
     def post(self,request,format=None):
         return Response(
                     {
@@ -358,6 +360,7 @@ class AllWorldsApi(APIView):
             ,
             status=status.HTTP_404_NOT_FOUND
             )
+    @csrf_protect
     def post(self, request,format=None):
         pass
 
