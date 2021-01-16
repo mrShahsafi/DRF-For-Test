@@ -52,6 +52,11 @@ urlpatterns = [
          )
          ,
     path(
+        'api/',
+         include('CascadeCat.urls')
+         )
+         ,
+    path(
         'Vue/',
          include('VueApp.urls')
          )

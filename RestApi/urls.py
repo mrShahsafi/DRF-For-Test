@@ -6,7 +6,6 @@ from django.views.generic import RedirectView
 #from django.views.generic.base import RedirectView
 
 app_name = 'RestApi'
-#TODO: implement redire for root path of api
 
 urlpatterns = [
         path(
