@@ -17,11 +17,9 @@ class Category(models.Model):
                 default='null'
                 )
     has_subcategory = models.BooleanField(default=False)
-    sub_category = models.ForeignKey(
+    sub_category = models.ManyToManyField(
                 SubCategory,
                 verbose_name='sub category',
-                on_delete=models.CASCADE,
-
                 )
     def __str__(self):
         return self.name
@@ -45,6 +43,10 @@ class Product(models.Model):
     category = models.ManyToManyField(
                     Category,
                     verbose_name='Category',
+                    )
+    sub_category = models.ManyToManyField(
+                    SubCategory,
+                    verbose_name='Sub-Category',
                     )
     slug = models.SlugField(
                     editable=False,
