@@ -23,14 +23,20 @@ class SingleProductApi(APIView):
     def get(self, request,id):
         product = Product.objects.filter(pk=id)
         if product:
+            for c in product:
+                category = c.category.all()
             serialized_data = SingleProductSerializer(
                                             product,many=True
                                                 )
             data  = serialized_data.data
-
+            def get_subcategory(Category):
+                for a in category:
+                    return a.sub_category.name
             return Response(
                 {
-                'data':data
+                'product':data
+                ,
+                'subcategory':get_subcategory(Category=category)
                 }
                 ,
                 status=SUCCESS
