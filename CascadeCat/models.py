@@ -26,7 +26,7 @@ class SubCategory(models.Model):
                 )
 
     def __str__(self):
-        return self.name
+        return self.name + ' - ' + str(self.main_category.name)
 
 from django.utils.text import slugify
 from django.urls import reverse
