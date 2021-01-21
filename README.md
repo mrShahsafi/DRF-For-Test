@@ -69,6 +69,8 @@ a very simple API for Insert, Delete and Select in SQLs dataBases
 
 ##TODO:
 
-[] : Dispaly category and sub-category 's name instead of id's
+[x] : Dispaly category and sub-category 's name instead of id's
 
-[] : Think more about category and sub-category 's Logic
+[x] : Think more about category and sub-category 's Logic
+
+[] : Auto generate barcode
