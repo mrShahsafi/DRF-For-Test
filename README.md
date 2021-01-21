@@ -67,6 +67,21 @@ a very simple API for Insert, Delete and Select in SQLs dataBases
 
 ---
 
+***Making Query***
+
+#get products that are in one sub_category
+
+```
+>>> cotumeproducts = Product.objects.filter(sub_category__name="suit's")
+>>> cotumeproducts
+<QuerySet [<Product: batman's gloves - 4456987>, <Product: Spiderman's mask - 3365479>]>
+>>> for name in cotumeproducts:
+...     print(name.name)
+...
+batman's gloves
+Spiderman's mask
+```
+---
 ##TODO:
 
 [x] : Dispaly category and sub-category 's name instead of id's
