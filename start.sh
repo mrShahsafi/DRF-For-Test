@@ -1,4 +1,4 @@
-cd /Users/macbook/Desktop/project/DjangoProjects/DrfTest/
-source Env/bin/avtivate
-cd DRF-For-Test
+pip install -r requirements.txt
+python manage.py makemigrations
+python manage.py migrate
 source run.sh
