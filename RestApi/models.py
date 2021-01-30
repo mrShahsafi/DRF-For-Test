@@ -42,7 +42,8 @@ class Hero(models.Model):
                                 Image,
                                 on_delete=models.CASCADE,
                                 verbose_name = "Hero's picture",
-                                default=0
+                                blank=True,
+                                null=True,
                                 )
     is_deleted = models.BooleanField(default = False)
 

@@ -3,6 +3,8 @@ from django.views import View
 from django.contrib.auth.decorators import (
                                 login_required
                                             )
+from django.utils.decorators import method_decorator
+
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.cache import cache_page
 from rest_framework.views import APIView
@@ -210,7 +212,7 @@ class SubmitHeroApi(APIView):
         {'status':'POST only accepted'},
         status=status.HTTP_405_METHOD_NOT_ALLOWED
         )
-    @csrf_protect
+#    @csrf_protect
     def post(self,request,format=None):
         import json
         #from rest_framework.parsers import JSONParser
@@ -219,6 +221,11 @@ class SubmitHeroApi(APIView):
         name = ToJsonData["name"]
         alias  = ToJsonData["alias"]
         world_id = ToJsonData["world_id"]
+        def to_str(input):#for debug purposes
+            return str(input)
+        for data in ToJsonData:
+            print(to_str(input=data))
+        print('End')#for debug purposes
         '''serializer = SubmitHeroSerializer(data=data)
         print(serializer)
         #print(serializer.data)
@@ -237,11 +244,13 @@ class SubmitHeroApi(APIView):
             #we calculate world type by world id & new we can user world object
             hero.world = world'''
         world  = World.objects.get(id=world_id)
-        try:
-            hero = Hero.objects.create(name=name, alias=alias, world=world)
-            hero.save()
-        except:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+        print(str(world)+'\nEND') #for debug purposes
+        hero = Hero()
+        hero.name = name
+        hero.alias = alias
+        hero.world = world
+        print(str(hero)+'\nEND') #for debug purposes
+        hero.save()
         return Response(
                         {
                         'data':'Hero Saved'
@@ -261,7 +270,7 @@ class DeleteHeroApi(APIView):
 #    permission_classes = [IsAuthenticated]
     def get(self,request,format=None):
         return Response(status=status.HTTP_403_FORBIDDEN)
-    @csrf_protect
+#    @method_decorator(csrf_protect)
     def post(self,request,format=None):
         import json
         data = json.dumps(request.data)
