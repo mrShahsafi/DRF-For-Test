@@ -129,11 +129,13 @@ class AllHeroesApi(APIView):
 
             for hero in all_heroes:
                 data.append({
-                    'name is':hero.name
+                    'pk':hero.pk
                     ,
-                    'alias is':hero.alias
+                    'name':hero.name
                     ,
-                    'world is':hero.world.world_name
+                    'alias':hero.alias
+                    ,
+                    'world':hero.world.world_name
                     ,
                 })
 
