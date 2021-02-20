@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 from django.contrib.auth.decorators import (
-                                login_required
+                                login_required,
                                             )
 from django.utils.decorators import method_decorator
 
@@ -11,13 +11,18 @@ from rest_framework.views import APIView
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import (
+                                IsAuthenticated,
+                                IsAuthenticatedOrReadOnly,
+                                AllowAny,
+                                )
 from .serializers import (
                             SingleHeroSerializer,
                             )
 
-from .models import (Hero,
-                        World
+from .models import (   
+                        Hero,
+                        World,
                         )
 from ratelimit.decorators import ratelimit
 
@@ -120,6 +125,7 @@ class SingleHeroByPkApi(APIView):
 
 
 class AllHeroesApi(APIView):
+    permission_classes = [IsAuthenticatedOrReadOnly]
     def get(self,request,format=None):
         #from django.contrib.sites.shortcuts import get_current_site
         #domain = get_current_site(request).domain
@@ -206,7 +212,7 @@ class SearchHeroApi(APIView):
                              status=status.HTTP_404_NOT_FOUND
                              )
 class SubmitHeroApi(APIView):
-#    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     def get(self,request,format=None):
         return Response(
         {'status':'POST only accepted'},
@@ -267,7 +273,7 @@ class SubmitHeroApi(APIView):
 '''
 
 class DeleteHeroApi(APIView):
-#    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     def get(self,request,format=None):
         return Response(status=status.HTTP_403_FORBIDDEN)
 #    @method_decorator(csrf_protect)
