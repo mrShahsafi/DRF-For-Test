@@ -104,4 +104,4 @@ Spiderman's mask
 
 - [x] : Think more about category and sub-category 's Logic
 
-- [] : Auto generate barcode
+- [ ] : Auto generate barcode
